@@ -16,8 +16,8 @@ client = OpenAI(
 
 class OpenAIRequest(BaseModel):
     prompt: str
-    model: str = "gpt-3.5-turbo"
-    max_tokens: int = 100
+    # model: str = "gpt-3.5-turbo"
+    # max_tokens: int = 100
 
 @app.post("/openai/generate")
 def generate_text(request: OpenAIRequest):
@@ -50,7 +50,7 @@ ERROR: error during connect: Head "http://%2F%2F.%2Fpipe%2FdockerDesktopLinuxEng
 """
 
 @app.get("/openai/code")
-def generate_response():
+def generate_response_get():
     try:
         response = client.responses.create(
             instructions=STARTER_PROMPT,
@@ -60,6 +60,20 @@ def generate_response():
         return {"response": response.output_text} #will give {"response": "..." }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/openai/codePost")
+def generate_response_post(request: OpenAIRequest):
+    try:
+        response = client.responses.create(
+            instructions=STARTER_PROMPT,
+            model="gpt-4.1-2025-04-14",
+            input=request.prompt
+        )
+        return {"response": response.output_text} #will give {"response": "..." }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+#do a post request to /openai/codePost with raw json body {"prompt": "your code snippet here"} not query params
 
 
 @app.get("/")# test endpoint
