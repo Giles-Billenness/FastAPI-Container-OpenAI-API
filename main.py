@@ -69,7 +69,7 @@ def hello():
 
 
 def main():
-    print("Hello from fastapi-contrainer-openai-api!")
+    print("Hello from fastapi-Container-openai-api!")
 
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
-# FastAPI Contrainer OpenAI API
+# FastAPI Container OpenAI API
 
 uv run fastapi dev main.py
 
