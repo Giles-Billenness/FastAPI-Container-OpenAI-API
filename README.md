@@ -23,9 +23,13 @@ cd FastAPI-Contrainer-OpenAI-API
 
 - Create a `.env` file with your OpenAI API key:
 
+    Get your API key [here](https://platform.openai.com/settings/proj_GkOAOqdaWKk2CEu7DK4Dku1E/api-keys) and add it to the `.env` file:
+
   ```env
   OPENAI_API_KEY=sk-...
   ```
+
+  Ensure your account is funded here: [OpenAI Billing](https://platform.openai.com/settings/organization/billing/overview).
 
 - (Optional) Create a virtual environment and install dependencies:
 
