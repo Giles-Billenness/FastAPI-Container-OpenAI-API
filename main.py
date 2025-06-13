@@ -4,7 +4,7 @@ from openai import OpenAI
 import os
 from dotenv import load_dotenv
 
-from instructions import SYS_PROMPT_SWEBENCH, python_bash_patch_tool
+from instructions import SYS_PROMPT_SWEBENCH, python_bash_patch_tool, STARTER_PROMPT
 
 load_dotenv()# Load environment variables from .env file
 
@@ -43,6 +43,24 @@ def generate_instruction(request: OpenAIRequest):
         return {"response": response.choices[0].message["content"]}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+code_snippet = """
+Im getting this error when trying to build the docker image with the command: docker build -t fastapi-openai .
+ERROR: error during connect: Head "http://%2F%2F.%2Fpipe%2FdockerDesktopLinuxEngine/_ping": open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.
+"""
+
+@app.get("/openai/code")
+def generate_response():
+    try:
+        response = client.responses.create(
+            instructions=STARTER_PROMPT,
+            model="gpt-4.1-2025-04-14",
+            input=code_snippet
+        )
+        return {"response": response.output_text} #will give {"response": "..." }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 
 @app.get("/")# test endpoint
 def hello():
