@@ -6,7 +6,7 @@ This project provides a FastAPI-based API and a conversational barista chatbot d
 
 - **OpenAI API integration**: Use GPT-4 function calling for tool-augmented conversations.
 - **Barista chatbot**: Chat with an AI barista that can search a coffee menu, check the weather, and place orders.
-- **Tool calling**: The assistant can automatically invoke Python functions for menu search, weather lookup, and order placement.
+- **Tool calling**: The assistant can automatically invoke Python functions for menu search, weather lookup, and order placement. (multi-tool use is supported with single user input)
 - **FastAPI endpoints**: Expose OpenAI-powered endpoints for text generation and code assistance.
 - **Docker support**: Easily build and run the API in a containerized environment.
 
